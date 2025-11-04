@@ -1,3 +1,9 @@
 <resources>
-      <dimen name="fab_margin">16dp</dimen>
-   </resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="button_padding">10dp</dimen>
+    <dimen name="cell_padding">16dp</dimen>
+    <dimen name="cell_box_size">100dp</dimen>
+    <dimen name="cell_corner_clip_size">24dp</dimen>
+    <dimen name="cell_font_size">40sp</dimen>
+
+</resources>

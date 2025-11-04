@@ -35,6 +35,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -60,6 +61,7 @@ data class MyCell(
     val id: Int
 )
 
+private const val CELL_FONT_SIZE = 40
 @Composable
 fun MyCellContent(cell: MyCell){
     var cellColour = Color.Blue
@@ -68,16 +70,11 @@ fun MyCellContent(cell: MyCell){
     }
     Box(
         modifier = Modifier
-            .padding(15.dp)
+            .padding(dimensionResource(R.dimen.cell_padding))
             .clip(
-                RoundedCornerShape(
-                    topEnd = 24.dp,
-                    topStart = 24.dp,
-                    bottomEnd = 24.dp,
-                    bottomStart = 24.dp
-                )
+                RoundedCornerShape(dimensionResource(R.dimen.cell_corner_clip_size))
             )
-            .size(100.dp)
+            .size(dimensionResource(R.dimen.cell_box_size))
             .background(cellColour),
         contentAlignment = Alignment.Center,
 
@@ -85,11 +82,14 @@ fun MyCellContent(cell: MyCell){
         Text(
             text = cell.id.toString(),
             textAlign = TextAlign.Center,
-            fontSize = 40.sp,
+            fontSize = CELL_FONT_SIZE.sp,
             color = Color.White
         )
     }
 }
+
+private const val VERTICAL_ITEMS = 3
+private const val HORIZONTAL_ITEMS = 3
 
 @Composable
 fun MainScreen(){
@@ -101,10 +101,10 @@ fun MainScreen(){
 
     val cellsCount: Int = when (configuration.orientation){
         Configuration.ORIENTATION_LANDSCAPE -> {
-            4
+            HORIZONTAL_ITEMS
         }
         else -> {
-            3
+            VERTICAL_ITEMS
         }
     }
 
@@ -130,7 +130,7 @@ fun MainScreen(){
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp),
+                .padding(dimensionResource(R.dimen.button_padding)),
             horizontalArrangement = Arrangement.End
         ) {
             Button(
